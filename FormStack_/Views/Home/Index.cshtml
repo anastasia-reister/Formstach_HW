@@ -1,0 +1,68 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Home Page";
+}
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+@*Html helper Form that collects information and send to respective values in the controller, parameters matching the name attributes of the HTML elements *@
+@using (Html.BeginForm("AddForm", "Home", FormMethod.Post))
+{
+    <div class="container mt-5">
+        <div class="row pt-5">
+            <div class="form-group" >
+                <input name="Name" id="field1" type="text" class="field" placeholder="Name" desc="Enter your full name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" >
+                <input name="Description" id="field2" type="text" class="field" placeholder="Description" desc="Enter your occupation" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" >
+                <input name="Date" type="text" id="field3" class="field" placeholder="Date - MM/DD/YYYY" desc="Enter today's date" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <button type="submit">Add Form</button>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<dialog  title="">
+    <text></text>
+    </dialog>
+
+
+<script>
+
+  
+    //each element on click calls the openDialog function passing it's Id
+    $("#field1").click(function () {
+        openDialog("#field1");
+    });
+    $("#field2").click(function () {
+        openDialog("#field2");
+    });
+    $("#field3").click(function () {
+        openDialog("#field3");
+    });
+
+    //a function that grabs element's metadata sch as name and description and uses it as dialog parameters
+      function openDialog(id) {
+        var name = $(id).attr("name");
+        var desc = $(id).attr("desc");
+        $("#dialog").dialog({
+            title: name,
+            text: desc
+        });
+       
+    }
+</script>
